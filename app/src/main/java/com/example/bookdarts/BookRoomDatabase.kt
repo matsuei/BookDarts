@@ -50,14 +50,7 @@ public abstract class BookRoomDatabase : RoomDatabase() {
         }
 
         suspend fun populateDatabase(bookDao: BookDao) {
-            // Delete all content here.
             bookDao.deleteAll()
-
-            // Add sample words.
-            var book = Book(0, "test")
-            bookDao.insert(book)
-
-            // TODO: Add your own words!
         }
     }
 }

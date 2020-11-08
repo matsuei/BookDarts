@@ -5,15 +5,40 @@
     android:layout_height="match_parent">
 
     <EditText
-        android:id="@+id/edit_word"
+        android:id="@+id/input_title"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:minHeight="48dp"
         android:fontFamily="sans-serif-light"
-        android:hint="@string/hint_word"
+        android:hint="@string/input_title"
         android:inputType="textAutoComplete"
         android:layout_margin="16dp"
-        android:textSize="18sp" />
+        android:textSize="18sp"
+        android:importantForAutofill="no" />
+
+    <EditText
+        android:id="@+id/input_author"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:minHeight="48dp"
+        android:fontFamily="sans-serif-light"
+        android:hint="@string/input_author"
+        android:inputType="textAutoComplete"
+        android:layout_margin="16dp"
+        android:textSize="18sp"
+        android:importantForAutofill="no" />
+
+    <EditText
+        android:id="@+id/input_image_url"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:minHeight="48dp"
+        android:fontFamily="sans-serif-light"
+        android:hint="@string/input_image_url"
+        android:inputType="textAutoComplete"
+        android:layout_margin="16dp"
+        android:textSize="18sp"
+        android:importantForAutofill="no" />
 
     <Button
         android:id="@+id/button_save"

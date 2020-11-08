@@ -1,7 +1,9 @@
 <resources>
     <string name="app_name">BookDarts</string>
     <string name="add_word">追加</string>
-    <string name="hint_word">Word...</string>
+    <string name="input_title">タイトルを入力</string>
+    <string name="input_author">著者を入力</string>
+    <string name="input_image_url">画像のURLを入力（任意）</string>
     <string name="button_save">Save</string>
     <string name="empty_not_saved">Word not saved because it is empty.</string>
 </resources>

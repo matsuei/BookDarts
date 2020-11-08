@@ -10,6 +10,7 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.google.android.material.floatingactionbutton.FloatingActionButton
+import java.util.*
 
 class MainActivity : AppCompatActivity() {
     private lateinit var viewModel: BookViewModel
@@ -41,10 +42,12 @@ class MainActivity : AppCompatActivity() {
         super.onActivityResult(requestCode, resultCode, data)
 
         if (requestCode == newBookActivityRequestCode && resultCode == Activity.RESULT_OK) {
-            data?.getStringExtra(NewBookActivity.EXTRA_REPLY)?.let {
-                val book = Book(0, it)
-                viewModel.insert(book)
-            }
+            val title = data?.getStringExtra(NewBookActivity.EXTRA_TITLE) ?: "title"
+            val author = data?.getStringExtra(NewBookActivity.EXTRA_AUTHOR) ?: "author"
+            val imageURL = data?.getStringExtra(NewBookActivity.EXTRA_IMAGE_URL) ?: ""
+            val book = Book(0, title, author, Date().time.toLong(), imageURL)
+            viewModel.insert(book)
+            Date().time.toLong()
         } else {
             Toast.makeText(
                 applicationContext,

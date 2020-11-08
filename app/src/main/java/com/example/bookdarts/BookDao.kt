@@ -9,8 +9,8 @@ import androidx.room.Query
 @Dao
 interface BookDao {
 
-    @Query("SELECT * from book_table ORDER BY title ASC")
-    fun getTitleAlphabetizedBooks(): LiveData<List<Book>>
+    @Query("SELECT * from book_table ORDER BY created_at ASC")
+    fun getBooksByCreatedAt(): LiveData<List<Book>>
 
     @Insert(onConflict = OnConflictStrategy.IGNORE)
     suspend fun insert(word: Book)

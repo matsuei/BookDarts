@@ -7,23 +7,32 @@ import android.os.Bundle
 import android.text.TextUtils
 import android.widget.Button
 import android.widget.EditText
+import java.util.*
 
 class NewBookActivity : AppCompatActivity() {
-    private lateinit var editTitleView: EditText
+    private lateinit var inputTitleView: EditText
+    private lateinit var inputAuthorView: EditText
+    private lateinit var inputImageURLView: EditText
 
     public override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_new_book)
-        editTitleView = findViewById(R.id.edit_word)
+        inputTitleView = findViewById(R.id.input_title)
+        inputAuthorView = findViewById(R.id.input_author)
+        inputImageURLView = findViewById(R.id.input_image_url)
 
         val button = findViewById<Button>(R.id.button_save)
         button.setOnClickListener {
             val replyIntent = Intent()
-            if (TextUtils.isEmpty(editTitleView.text)) {
+            if (TextUtils.isEmpty(inputTitleView.text)) {
                 setResult(Activity.RESULT_CANCELED, replyIntent)
             } else {
-                val word = editTitleView.text.toString()
-                replyIntent.putExtra(EXTRA_REPLY, word)
+                val title = inputTitleView.text.toString()
+                val author = inputAuthorView.text.toString()
+                val imageURL = inputImageURLView.text.toString()
+                replyIntent.putExtra(EXTRA_TITLE, title)
+                replyIntent.putExtra(EXTRA_AUTHOR, author)
+                replyIntent.putExtra(EXTRA_IMAGE_URL, imageURL)
                 setResult(Activity.RESULT_OK, replyIntent)
             }
             finish()
@@ -31,6 +40,8 @@ class NewBookActivity : AppCompatActivity() {
     }
 
     companion object {
-        const val EXTRA_REPLY = "com.example.android.booklistsql.REPLY"
+        const val EXTRA_TITLE = "com.example.android.booklistsql.TITLE"
+        const val EXTRA_AUTHOR = "com.example.android.booklistsql.AUTHOR"
+        const val EXTRA_IMAGE_URL = "com.example.android.booklistsql.IMAGE_URL"
     }
 }
