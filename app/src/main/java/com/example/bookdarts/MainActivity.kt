@@ -4,6 +4,7 @@ import android.app.Activity
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.view.View
 import android.widget.Toast
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
@@ -24,6 +25,12 @@ class MainActivity : AppCompatActivity() {
         val adapter = BookListAdapter(this)
         recyclerView.adapter = adapter
         recyclerView.layoutManager = LinearLayoutManager(this)
+
+        adapter.setOnItemClickListener(object : BookListAdapter.OnItemClickListener {
+            override fun onClick(view: View, book: Book) {
+                Toast.makeText(applicationContext, book.title, Toast.LENGTH_LONG).show()
+            }
+        })
 
         viewModel = ViewModelProvider(this).get(BookViewModel::class.java)
         viewModel.allBooks.observe(this, Observer { words ->

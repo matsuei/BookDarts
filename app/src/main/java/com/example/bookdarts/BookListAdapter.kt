@@ -13,6 +13,7 @@ class BookListAdapter internal constructor(
 
     private val inflater: LayoutInflater = LayoutInflater.from(context)
     private var books = emptyList<Book>() // Cached copy of words
+    lateinit var listener: OnItemClickListener
 
     inner class WordViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         val wordItemView: TextView = itemView.findViewById(R.id.textView)
@@ -26,6 +27,9 @@ class BookListAdapter internal constructor(
     override fun onBindViewHolder(holder: WordViewHolder, position: Int) {
         val current = books[position]
         holder.wordItemView.text = current.title
+        holder.wordItemView.setOnClickListener {
+            listener.onClick(it, current)
+        }
     }
 
     internal fun setWords(words: List<Book>) {
@@ -34,4 +38,12 @@ class BookListAdapter internal constructor(
     }
 
     override fun getItemCount() = books.size
+
+    interface OnItemClickListener {
+        fun onClick(view: View, book: Book)
+    }
+
+    fun setOnItemClickListener(listener: OnItemClickListener) {
+        this.listener = listener
+    }
 }
