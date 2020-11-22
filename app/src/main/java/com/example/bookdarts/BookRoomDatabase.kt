@@ -50,7 +50,7 @@ public abstract class BookRoomDatabase : RoomDatabase() {
         }
 
         suspend fun populateDatabase(bookDao: BookDao) {
-            bookDao.deleteAll()
+            //bookDao.deleteAll()
         }
     }
 }

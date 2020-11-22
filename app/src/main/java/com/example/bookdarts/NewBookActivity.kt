@@ -5,6 +5,7 @@ import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.text.TextUtils
+import android.view.MenuItem
 import android.widget.Button
 import android.widget.EditText
 import java.util.*
@@ -17,6 +18,7 @@ class NewBookActivity : AppCompatActivity() {
     public override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_new_book)
+        supportActionBar?.setDisplayHomeAsUpEnabled(true)
         inputTitleView = findViewById(R.id.input_title)
         inputAuthorView = findViewById(R.id.input_author)
         inputImageURLView = findViewById(R.id.input_image_url)
@@ -37,6 +39,15 @@ class NewBookActivity : AppCompatActivity() {
             }
             finish()
         }
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem?): Boolean {
+        when(item?.itemId){
+            android.R.id.home->{
+                finish()
+            }
+        }
+        return super.onOptionsItemSelected(item)
     }
 
     companion object {

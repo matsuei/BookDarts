@@ -6,20 +6,21 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
 import android.widget.Toast
-import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.google.android.material.floatingactionbutton.FloatingActionButton
 import java.util.*
+import android.view.MenuItem
 
-class MainActivity : AppCompatActivity() {
+class BookDartsListActivity : AppCompatActivity() {
     private lateinit var viewModel: BookViewModel
     private val newBookActivityRequestCode = 1
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
+        supportActionBar?.setDisplayHomeAsUpEnabled(true)
 
         val recyclerView = findViewById<RecyclerView>(R.id.recyclerview)
         val adapter = BookListAdapter(this)
@@ -28,20 +29,18 @@ class MainActivity : AppCompatActivity() {
 
         adapter.setOnItemClickListener(object : BookListAdapter.OnItemClickListener {
             override fun onClick(view: View, book: Book) {
-                val intent = Intent(this@MainActivity, BookDartsListActivity::class.java)
-                startActivityForResult(intent, newBookActivityRequestCode)
+                Toast.makeText(applicationContext, book.title, Toast.LENGTH_LONG).show()
             }
         })
 
         viewModel = ViewModelProvider(this).get(BookViewModel::class.java)
-        viewModel.allBooks.observe(this, Observer { words ->
-            // Update the cached copy of the words in the adapter.
+        viewModel.allBooks.observe(this, { words ->
             words?.let { adapter.setWords(it) }
         })
 
         val fab = findViewById<FloatingActionButton>(R.id.fab)
         fab.setOnClickListener {
-            val intent = Intent(this@MainActivity, NewBookActivity::class.java)
+            val intent = Intent(this@BookDartsListActivity, NewBookActivity::class.java)
             startActivityForResult(intent, newBookActivityRequestCode)
         }
     }
@@ -58,9 +57,18 @@ class MainActivity : AppCompatActivity() {
             Date().time.toLong()
         } else {
             Toast.makeText(
-                applicationContext,
-                R.string.empty_not_saved,
-                Toast.LENGTH_LONG).show()
+                    applicationContext,
+                    R.string.empty_not_saved,
+                    Toast.LENGTH_LONG).show()
         }
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem?): Boolean {
+        when(item?.itemId){
+            android.R.id.home->{
+                finish()
+            }
+        }
+        return super.onOptionsItemSelected(item)
     }
 }

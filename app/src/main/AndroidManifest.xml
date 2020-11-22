@@ -9,7 +9,8 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.BookDarts">
-        <activity android:name=".NewBookActivity"></activity>
+        <activity android:name=".BookDartsListActivity"></activity>
+        <activity android:name=".NewBookActivity" />
         <activity android:name=".MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
