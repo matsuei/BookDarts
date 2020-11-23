@@ -14,7 +14,7 @@ import java.util.*
 import android.view.MenuItem
 
 class BookDartsListActivity : AppCompatActivity() {
-    private lateinit var viewModel: BookViewModel
+    private lateinit var viewModel: DartsListViewModel
     private val newBookActivityRequestCode = 1
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -23,19 +23,20 @@ class BookDartsListActivity : AppCompatActivity() {
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
 
         val recyclerView = findViewById<RecyclerView>(R.id.recyclerview)
-        val adapter = BookListAdapter(this)
+        val adapter = DartsListAdapter(this)
         recyclerView.adapter = adapter
         recyclerView.layoutManager = LinearLayoutManager(this)
 
-        adapter.setOnItemClickListener(object : BookListAdapter.OnItemClickListener {
-            override fun onClick(view: View, book: Book) {
-                Toast.makeText(applicationContext, book.title, Toast.LENGTH_LONG).show()
+        adapter.setOnItemClickListener(object : DartsListAdapter.OnItemClickListener {
+            override fun onClick(view: View, dart: Dart) {
+                Toast.makeText(applicationContext, dart.memo, Toast.LENGTH_LONG).show()
             }
         })
 
-        viewModel = ViewModelProvider(this).get(BookViewModel::class.java)
-        viewModel.allBooks.observe(this, { words ->
-            words?.let { adapter.setWords(it) }
+        val id: Int = intent.extras?.getInt(EXTRA_BOOK_ID, 0) ?: 0
+        viewModel = ViewModelProvider(this, DartsListViewModelFactory(this.application, id)).get(DartsListViewModel::class.java)
+        viewModel.dartsList.observe(this, { darts ->
+            darts?.let { adapter.setDarts(it) }
         })
 
         val fab = findViewById<FloatingActionButton>(R.id.fab)
@@ -52,9 +53,8 @@ class BookDartsListActivity : AppCompatActivity() {
             val title = data?.getStringExtra(NewBookActivity.EXTRA_TITLE) ?: "title"
             val author = data?.getStringExtra(NewBookActivity.EXTRA_AUTHOR) ?: "author"
             val imageURL = data?.getStringExtra(NewBookActivity.EXTRA_IMAGE_URL) ?: ""
-            val book = Book(0, title, author, Date().time.toLong(), imageURL)
-            viewModel.insert(book)
-            Date().time.toLong()
+            val dart = Dart(0, viewModel.bookId, 10, 10, "memo")
+            viewModel.insert(dart)
         } else {
             Toast.makeText(
                     applicationContext,
@@ -70,5 +70,9 @@ class BookDartsListActivity : AppCompatActivity() {
             }
         }
         return super.onOptionsItemSelected(item)
+    }
+
+    companion object {
+        const val EXTRA_BOOK_ID = "com.example.android.booklistsql.BOOK_ID"
     }
 }

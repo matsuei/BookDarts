@@ -1,10 +1,7 @@
 package com.example.bookdarts
 
 import androidx.lifecycle.LiveData
-import androidx.room.Dao
-import androidx.room.Insert
-import androidx.room.OnConflictStrategy
-import androidx.room.Query
+import androidx.room.*
 
 @Dao
 interface BookDao {
@@ -17,4 +14,13 @@ interface BookDao {
 
     @Query("DELETE FROM book_table")
     suspend fun deleteAll()
+
+    @Query("SELECT * FROM dart_table WHERE book_id = :id")
+    fun getDartsList(id: Int): LiveData<List<Dart>>
+
+    @Insert(onConflict = OnConflictStrategy.IGNORE)
+    suspend fun insert(dart: Dart)
+
+    @Query("DELETE FROM dart_table")
+    suspend fun deleteAllDarts()
 }

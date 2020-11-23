@@ -10,6 +10,7 @@ import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.example.bookdarts.BookDartsListActivity.Companion.EXTRA_BOOK_ID
 import com.google.android.material.floatingactionbutton.FloatingActionButton
 import java.util.*
 
@@ -29,7 +30,8 @@ class MainActivity : AppCompatActivity() {
         adapter.setOnItemClickListener(object : BookListAdapter.OnItemClickListener {
             override fun onClick(view: View, book: Book) {
                 val intent = Intent(this@MainActivity, BookDartsListActivity::class.java)
-                startActivityForResult(intent, newBookActivityRequestCode)
+                intent.putExtra(EXTRA_BOOK_ID, book.id)
+                startActivity(intent)
             }
         })
 
