@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <EditText
+        android:id="@+id/input_page"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:minHeight="48dp"
+        android:fontFamily="sans-serif-light"
+        android:hint="@string/input_page"
+        android:inputType="textAutoComplete"
+        android:layout_margin="16dp"
+        android:textSize="18sp"
+        android:importantForAutofill="no" />
+
+    <EditText
+        android:id="@+id/input_row"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:minHeight="48dp"
+        android:fontFamily="sans-serif-light"
+        android:hint="@string/input_row"
+        android:inputType="textAutoComplete"
+        android:layout_margin="16dp"
+        android:textSize="18sp"
+        android:importantForAutofill="no" />
+
+    <EditText
+        android:id="@+id/input_memo"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:minHeight="48dp"
+        android:fontFamily="sans-serif-light"
+        android:hint="@string/input_memo"
+        android:inputType="textAutoComplete"
+        android:layout_margin="16dp"
+        android:textSize="18sp"
+        android:importantForAutofill="no" />
+
+    <Button
+        android:id="@+id/button_save"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/black"
+        android:text="@string/button_save"
+        android:layout_margin="16dp"
+        android:textColor="@color/buttonLabel" />
+
+</LinearLayout>

@@ -4,6 +4,9 @@
     <string name="input_title">タイトルを入力</string>
     <string name="input_author">著者を入力</string>
     <string name="input_image_url">画像のURLを入力（任意）</string>
-    <string name="button_save">Save</string>
+    <string name="input_page">ページ数を入力</string>
+    <string name="input_row">列数を入力</string>
+    <string name="input_memo">メモを入力（任意）</string>
+    <string name="button_save">保存</string>
     <string name="empty_not_saved">Word not saved because it is empty.</string>
 </resources>

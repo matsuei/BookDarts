@@ -41,7 +41,7 @@ class BookDartsListActivity : AppCompatActivity() {
 
         val fab = findViewById<FloatingActionButton>(R.id.fab)
         fab.setOnClickListener {
-            val intent = Intent(this@BookDartsListActivity, NewBookActivity::class.java)
+            val intent = Intent(this@BookDartsListActivity, NewDartActivity::class.java)
             startActivityForResult(intent, newBookActivityRequestCode)
         }
     }
@@ -50,10 +50,10 @@ class BookDartsListActivity : AppCompatActivity() {
         super.onActivityResult(requestCode, resultCode, data)
 
         if (requestCode == newBookActivityRequestCode && resultCode == Activity.RESULT_OK) {
-            val title = data?.getStringExtra(NewBookActivity.EXTRA_TITLE) ?: "title"
-            val author = data?.getStringExtra(NewBookActivity.EXTRA_AUTHOR) ?: "author"
-            val imageURL = data?.getStringExtra(NewBookActivity.EXTRA_IMAGE_URL) ?: ""
-            val dart = Dart(0, viewModel.bookId, 10, 10, "memo")
+            val page = data?.getStringExtra(NewDartActivity.EXTRA_PAGE)?.toInt() ?: 0
+            val row = data?.getStringExtra(NewDartActivity.EXTRA_ROW)?.toInt() ?: 0
+            val memo = data?.getStringExtra(NewDartActivity.EXTRA_MEMO) ?: ""
+            val dart = Dart(0, viewModel.bookId, page, row, memo)
             viewModel.insert(dart)
         } else {
             Toast.makeText(
