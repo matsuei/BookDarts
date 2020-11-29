@@ -5,9 +5,16 @@
     android:layout_height="wrap_content">
 
     <TextView
-        android:id="@+id/textView"
+        android:id="@+id/mainTextView"
         style="@style/word_title"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="@android:color/holo_orange_light" />
+
+    <TextView
+        android:id="@+id/subTextView"
+        style="@style/word_title"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@android:color/holo_blue_light" />
 </LinearLayout>

@@ -16,7 +16,8 @@ class DartsListAdapter internal constructor(
     lateinit var listener: OnItemClickListener
 
     inner class WordViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
-        val wordItemView: TextView = itemView.findViewById(R.id.textView)
+        val pageItemView: TextView = itemView.findViewById(R.id.mainTextView)
+        val rowItemView: TextView = itemView.findViewById(R.id.subTextView)
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): WordViewHolder {
@@ -26,8 +27,9 @@ class DartsListAdapter internal constructor(
 
     override fun onBindViewHolder(holder: WordViewHolder, position: Int) {
         val current = darts[position]
-        holder.wordItemView.text = current.page.toString()
-        holder.wordItemView.setOnClickListener {
+        holder.pageItemView.text = current.page.toString()
+        holder.rowItemView.text = current.row.toString()
+        holder.itemView.setOnClickListener {
             listener.onClick(it, current)
         }
     }

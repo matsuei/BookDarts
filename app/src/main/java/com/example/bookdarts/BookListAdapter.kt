@@ -16,7 +16,8 @@ class BookListAdapter internal constructor(
     lateinit var listener: OnItemClickListener
 
     inner class WordViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
-        val wordItemView: TextView = itemView.findViewById(R.id.textView)
+        val titleItemView: TextView = itemView.findViewById(R.id.mainTextView)
+        val authorItemView: TextView = itemView.findViewById(R.id.subTextView)
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): WordViewHolder {
@@ -26,8 +27,9 @@ class BookListAdapter internal constructor(
 
     override fun onBindViewHolder(holder: WordViewHolder, position: Int) {
         val current = books[position]
-        holder.wordItemView.text = current.title
-        holder.wordItemView.setOnClickListener {
+        holder.titleItemView.text = current.title
+        holder.authorItemView.text = current.author
+        holder.itemView.setOnClickListener {
             listener.onClick(it, current)
         }
     }
