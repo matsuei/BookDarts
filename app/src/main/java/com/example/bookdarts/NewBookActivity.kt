@@ -8,6 +8,7 @@ import android.text.TextUtils
 import android.view.MenuItem
 import android.widget.Button
 import android.widget.EditText
+import android.widget.Toast
 import java.util.*
 
 class NewBookActivity : AppCompatActivity() {
@@ -26,18 +27,24 @@ class NewBookActivity : AppCompatActivity() {
         val button = findViewById<Button>(R.id.button_save)
         button.setOnClickListener {
             val replyIntent = Intent()
-            if (TextUtils.isEmpty(inputTitleView.text)) {
-                setResult(Activity.RESULT_CANCELED, replyIntent)
-            } else {
-                val title = inputTitleView.text.toString()
-                val author = inputAuthorView.text.toString()
-                val imageURL = inputImageURLView.text.toString()
-                replyIntent.putExtra(EXTRA_TITLE, title)
-                replyIntent.putExtra(EXTRA_AUTHOR, author)
-                replyIntent.putExtra(EXTRA_IMAGE_URL, imageURL)
-                setResult(Activity.RESULT_OK, replyIntent)
+            when {
+                TextUtils.isEmpty(inputTitleView.text) -> {
+                    Toast.makeText(applicationContext, "タイトルの入力がありません", Toast.LENGTH_LONG).show()
+                }
+                TextUtils.isEmpty(inputAuthorView.text) -> {
+                    Toast.makeText(applicationContext, "著者の入力がありません", Toast.LENGTH_LONG).show()
+                }
+                else -> {
+                    val title = inputTitleView.text.toString()
+                    val author = inputAuthorView.text.toString()
+                    val imageURL = inputImageURLView.text.toString()
+                    replyIntent.putExtra(EXTRA_TITLE, title)
+                    replyIntent.putExtra(EXTRA_AUTHOR, author)
+                    replyIntent.putExtra(EXTRA_IMAGE_URL, imageURL)
+                    setResult(Activity.RESULT_OK, replyIntent)
+                    finish()
+                }
             }
-            finish()
         }
     }
 

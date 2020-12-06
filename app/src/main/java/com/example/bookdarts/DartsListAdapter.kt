@@ -21,14 +21,18 @@ class DartsListAdapter internal constructor(
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): WordViewHolder {
-        val itemView = inflater.inflate(R.layout.recyclerview_item, parent, false)
+        val itemView = inflater.inflate(R.layout.darts_list_recyclerview_item, parent, false)
         return WordViewHolder(itemView)
     }
 
     override fun onBindViewHolder(holder: WordViewHolder, position: Int) {
         val current = darts[position]
-        holder.pageItemView.text = current.page.toString()
-        holder.rowItemView.text = current.row.toString()
+        val pageBuilder = StringBuilder()
+        pageBuilder.append("ページ：").append(current.page.toString())
+        holder.pageItemView.text = pageBuilder.toString()
+        val rowBuilder = StringBuilder()
+        rowBuilder.append("列：").append(current.row.toString())
+        holder.rowItemView.text = rowBuilder.toString()
         holder.itemView.setOnClickListener {
             listener.onClick(it, current)
         }

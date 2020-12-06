@@ -8,6 +8,7 @@ import android.text.TextUtils
 import android.view.MenuItem
 import android.widget.Button
 import android.widget.EditText
+import android.widget.Toast
 
 class NewDartActivity : AppCompatActivity() {
     private lateinit var inputPageView: EditText
@@ -25,18 +26,24 @@ class NewDartActivity : AppCompatActivity() {
         val button = findViewById<Button>(R.id.button_save)
         button.setOnClickListener {
             val replyIntent = Intent()
-            if (TextUtils.isEmpty(inputPageView.text)) {
-                setResult(Activity.RESULT_CANCELED, replyIntent)
-            } else {
-                val page = inputPageView.text.toString()
-                val row = inputRowView.text.toString()
-                val memo = inputMemoLView.text.toString()
-                replyIntent.putExtra(EXTRA_PAGE, page)
-                replyIntent.putExtra(EXTRA_ROW, row)
-                replyIntent.putExtra(EXTRA_MEMO, memo)
-                setResult(Activity.RESULT_OK, replyIntent)
+            when {
+                TextUtils.isEmpty(inputPageView.text) -> {
+                    Toast.makeText(applicationContext, "ページ数の入力がありません", Toast.LENGTH_LONG).show()
+                }
+                TextUtils.isEmpty(inputRowView.text) -> {
+                    Toast.makeText(applicationContext, "列数の入力がありません", Toast.LENGTH_LONG).show()
+                }
+                else -> {
+                    val page = inputPageView.text.toString()
+                    val row = inputRowView.text.toString()
+                    val memo = inputMemoLView.text.toString()
+                    replyIntent.putExtra(EXTRA_PAGE, page)
+                    replyIntent.putExtra(EXTRA_ROW, row)
+                    replyIntent.putExtra(EXTRA_MEMO, memo)
+                    setResult(Activity.RESULT_OK, replyIntent)
+                    finish()
+                }
             }
-            finish()
         }
     }
 
