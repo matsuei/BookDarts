@@ -1,6 +1,7 @@
 package com.example.bookdarts
 
 import android.app.Activity
+import android.content.DialogInterface
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
@@ -12,6 +13,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.google.android.material.floatingactionbutton.FloatingActionButton
 import java.util.*
 import android.view.MenuItem
+import androidx.appcompat.app.AlertDialog
 
 class BookDartsListActivity : AppCompatActivity() {
     private lateinit var viewModel: DartsListViewModel
@@ -29,7 +31,18 @@ class BookDartsListActivity : AppCompatActivity() {
 
         adapter.setOnItemClickListener(object : DartsListAdapter.OnItemClickListener {
             override fun onClick(view: View, dart: Dart) {
-                Toast.makeText(applicationContext, dart.memo, Toast.LENGTH_LONG).show()
+                val titleBuilder = StringBuilder()
+                titleBuilder.append("ページ:").append(dart.page.toString()).append("   列:").append(dart.row.toString())
+                val memo: String = if (dart.memo.isEmpty()) "メモなし" else dart.memo
+
+                AlertDialog.Builder(this@BookDartsListActivity)
+                    .setTitle(titleBuilder.toString())
+                    .setMessage(memo)
+                    .setPositiveButton("閉じる",
+                        DialogInterface.OnClickListener { dialog, id ->
+                            dialog.dismiss()
+                        })
+                    .show()
             }
         })
 
