@@ -1,4 +1,4 @@
-package com.example.bookdarts
+package com.book.darts
 
 import android.content.Context
 import android.view.LayoutInflater

@@ -8,7 +8,7 @@ android {
     compileSdkVersion 29
 
     defaultConfig {
-        applicationId "com.example.bookdarts"
+        applicationId "com.book.darts"
         minSdkVersion 28
         targetSdkVersion 29
         versionCode 1

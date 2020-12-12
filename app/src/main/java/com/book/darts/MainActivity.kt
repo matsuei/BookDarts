@@ -1,4 +1,4 @@
-package com.example.bookdarts
+package com.book.darts
 
 import android.app.Activity
 import android.content.Intent
@@ -10,7 +10,7 @@ import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import com.example.bookdarts.BookDartsListActivity.Companion.EXTRA_BOOK_ID
+import com.book.darts.BookDartsListActivity.Companion.EXTRA_BOOK_ID
 import com.google.android.material.floatingactionbutton.FloatingActionButton
 import java.util.*
 

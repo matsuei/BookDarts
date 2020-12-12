@@ -1,4 +1,4 @@
-package com.example.bookdarts
+package com.book.darts
 
 import android.app.Activity
 import android.content.DialogInterface

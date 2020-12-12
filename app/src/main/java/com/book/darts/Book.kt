@@ -1,4 +1,4 @@
-package com.example.bookdarts
+package com.book.darts
 
 import androidx.room.ColumnInfo
 import androidx.room.Entity
