@@ -63,4 +63,5 @@ dependencies {
     // Testing
     testImplementation 'junit:junit:4.12'
     androidTestImplementation "androidx.arch.core:core-testing:$rootProject.coreTestingVersion"
+    implementation "io.coil-kt:coil:1.1.0"
 }

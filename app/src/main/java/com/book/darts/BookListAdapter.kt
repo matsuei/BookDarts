@@ -4,8 +4,10 @@ import android.content.Context
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
+import coil.load
 
 class BookListAdapter internal constructor(
     context: Context
@@ -18,6 +20,7 @@ class BookListAdapter internal constructor(
     inner class WordViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         val titleItemView: TextView = itemView.findViewById(R.id.mainTextView)
         val authorItemView: TextView = itemView.findViewById(R.id.subTextView)
+        val imageView: ImageView = itemView.findViewById(R.id.imageView)
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): WordViewHolder {
@@ -35,6 +38,10 @@ class BookListAdapter internal constructor(
         holder.authorItemView.text = authorBuilder.toString()
         holder.itemView.setOnClickListener {
             listener.onClick(it, current)
+        }
+        val url = "https://www.underconsideration.com/brandnew/archives/android_2019_logo_inverse.png"
+        holder.imageView.load(url) {
+            crossfade(true)
         }
     }
 
