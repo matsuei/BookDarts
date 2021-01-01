@@ -39,7 +39,7 @@ class BookListAdapter internal constructor(
         holder.itemView.setOnClickListener {
             listener.onClick(it, current)
         }
-        val url = "https://www.underconsideration.com/brandnew/archives/android_2019_logo_inverse.png"
+        val url = books[position].imageURLRawValue
         holder.imageView.load(url) {
             crossfade(true)
         }
