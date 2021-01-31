@@ -10,15 +10,15 @@
         style="@style/word_title"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="#FFFFFF" />
+        android:textSize="14sp" />
 
     <TextView
         android:id="@+id/subTextView"
         style="@style/word_title"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="#FFFFFF"
-        android:paddingTop="8dp" />
+        android:paddingTop="8dp"
+        android:textSize="14sp" />
 
     <View
         android:id="@+id/view3"

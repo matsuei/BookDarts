@@ -31,10 +31,10 @@ class BookListAdapter internal constructor(
     override fun onBindViewHolder(holder: WordViewHolder, position: Int) {
         val current = books[position]
         val titleBuilder = StringBuilder()
-        titleBuilder.append("タイトル：").append(current.title.toString())
+        titleBuilder.append(current.title.toString())
         holder.titleItemView.text = titleBuilder.toString()
         val authorBuilder = StringBuilder()
-        authorBuilder.append("著者：").append(current.author.toString())
+        authorBuilder.append(current.author.toString())
         holder.authorItemView.text = authorBuilder.toString()
         holder.itemView.setOnClickListener {
             listener.onClick(it, current)
