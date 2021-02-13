@@ -15,6 +15,9 @@ interface BookDao {
     @Query("DELETE FROM book_table")
     suspend fun deleteAll()
 
+    @Query("DELETE FROM book_table WHERE id = :id")
+    suspend fun deleteBook(id: Int)
+
     @Query("SELECT * FROM dart_table WHERE book_id = :id")
     fun getDartsList(id: Int): LiveData<List<Dart>>
 

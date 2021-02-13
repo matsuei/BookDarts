@@ -21,6 +21,10 @@ class DartsListViewModel(application: Application, id: Int) : AndroidViewModel(a
     fun insert(dart: Dart) = viewModelScope.launch(Dispatchers.IO) {
         repository.insert(dart)
     }
+
+    fun deleteBook() = viewModelScope.launch(Dispatchers.IO) {
+        repository.deleteBook(bookId)
+    }
 }
 
 class DartsListViewModelFactory(private val application: Application, private val id: Int) : ViewModelProvider.Factory {

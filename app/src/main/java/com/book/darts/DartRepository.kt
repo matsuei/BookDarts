@@ -8,4 +8,8 @@ class DartRepository(private val bookDao: BookDao, private val id: Int) {
     suspend fun insert(dart: Dart) {
         bookDao.insert(dart)
     }
+
+    suspend fun deleteBook(id: Int) {
+        bookDao.deleteBook(id)
+    }
 }

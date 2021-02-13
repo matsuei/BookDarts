@@ -9,4 +9,5 @@
     <string name="input_memo">メモを入力（任意）</string>
     <string name="button_save">保存</string>
     <string name="empty_not_saved">Word not saved because it is empty.</string>
+    <string name="delete">削除</string>
 </resources>
